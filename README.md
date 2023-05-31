@@ -75,3 +75,8 @@ Hello mvl as Guest
 
 ## Jinjer Template
 It helps us to use python code inside our HTML pages
+
+REF: https://svn.python.org/projects/external/Jinja-1.1/docs/build/inheritance.html
+
+
+
