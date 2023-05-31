@@ -114,4 +114,3 @@ DELETE -> delete data in web server
 
 ## Request & Redirect
 name = request.form.get('name') => collect the "name" data from the formreturn redirect(url_for('auth.login')) => once the sign up is done, we redirect tp the login page
-
