@@ -127,7 +127,7 @@ All tables should go into models.py
 
 ## Create database from CMD
 python3
->>>from _pushups_tracker import db,create_app
+>>> from _pushups_tracker import db,create_app
 >>> app=create_app()
 >>> app.app_context().push()
 >>> db.create_all()
@@ -150,3 +150,32 @@ It provides user session managament -> logging in , logging out, remembering use
 UserMixin function adds the flaks login attrbutes  to the model.
 User_Loader tells Flask login to find the specific user from the ID which is stored in their session cookie.
 We can add this in the create_app function
+
+-----------
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">Push-Ups Logger</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('main.index') }}">All
+                            Workouts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('main.profile') }}">My Account</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <a href="{{ url_for('auth.login') }}" class="btn btn-outline-success" type="submit">Login</a>
+                    <a href="{{ url_for('auth.signup') }}" class="btn btn-outline-success" type="submit">Sign Up</a>
+
+                </form>
+            </div>
+        </div>
+    </nav>` 
+    -----------------

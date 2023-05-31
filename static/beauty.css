@@ -1,4 +1,4 @@
-body{
+/* body{
     color: rgb(49, 50, 50);
     font-size: medium;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -14,4 +14,8 @@ body{
     margin: 5px;
     padding: 5px;
 
-}
+} */
+
+* {
+    font-family: "Arvo", serif;
+  }
