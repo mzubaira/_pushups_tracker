@@ -36,7 +36,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('main.index') }}">All
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('main.user_workouts') }}">All
                             Workouts</a>
                     </li>
                     <li class="nav-item">
@@ -45,9 +45,14 @@
                     </li>
                 </ul>
                 <form class="d-flex">
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('main.new_workout') }}" class="btn btn-outline-success" type="submit">Add New Workout</a>
+                    {% endif %} {% if not current_user.is_authenticated %}
                     <a href="{{ url_for('auth.login') }}" class="btn btn-outline-success" type="submit">Login</a>
                     <a href="{{ url_for('auth.signup') }}" class="btn btn-outline-success" type="submit">Sign Up</a>
-
+                    {% endif %} {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-success" type="submit">Logout</a>
+                    {% endif %}
                 </form>
             </div>
         </div>

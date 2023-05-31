@@ -11,6 +11,13 @@
 <!-- We are adding content in the BODY section -->
 {% block content %}
 
+<div id="intro">
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="notification is-success">
+      {{ messages[0] }}
+    </div>
+    {% endif %} {% endwith %}
+</div>  
 <div class="showcase">
     <img src="{{ url_for('static',filename='images/pushups.png') }}" alt="Pushup Guy" height="200px">
 </div>

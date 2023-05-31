@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, request, redirect
+from flask import Blueprint, render_template, url_for, request, redirect, flash
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import login_user, logout_user, login_required
 from .models import User
@@ -48,6 +48,7 @@ def login_post():
 
     #un-successfull login, redirect to login page
     if not user or not check_password_hash(user.password, password):
+        flash('Please check your login details and try again.')
         return redirect(url_for('auth.login'))
     
     login_user(user, remember=remember)
@@ -60,7 +61,7 @@ def login_post():
 def logout():
     #return "logging out"
     logout_user()
-    return redirect('main.index')
+    return redirect(url_for('main.index'))
 
 
 
