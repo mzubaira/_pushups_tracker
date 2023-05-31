@@ -78,5 +78,40 @@ It helps us to use python code inside our HTML pages
 
 REF: https://svn.python.org/projects/external/Jinja-1.1/docs/build/inheritance.html
 
+EXAMPLE: 
+<!-- Copies the entire BASE.html template -->
+{% extends 'base.html' %} 
 
+{% block head %} {{ super() }}
+
+<!-- We can add our own CSS files inside the HEAD section-->
+<link rel="stylesheet" href="{{ url_for('static',filename='extended_beauty.css') }}">
+
+{% endblock %} 
+
+<!-- We are adding content in the BODY section -->
+{% block content %}
+
+<div class="showcase">
+    <img src="{{ url_for('static',filename='images/pushups.png') }}" alt="Pushup Guy" height="200px">
+</div>
+<div class="container">
+    <h3>Hello!</h3>
+    <p>
+        Welcome to the push-ups logger! <br>
+        This website implements basic CRUD functionality & user authentication.
+    </p>
+</div>
+
+{% endblock %}
+
+
+## HTTP Requests (CRUD)
+GET -> fetching data from Web Server
+POST -> sends info to Web Server
+PUT -> modify data in web server
+DELETE -> delete data in web server
+
+## Request & Redirect
+name = request.form.get('name') => collect the "name" data from the formreturn redirect(url_for('auth.login')) => once the sign up is done, we redirect tp the login page
 
