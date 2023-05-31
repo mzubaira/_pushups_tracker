@@ -114,3 +114,23 @@ DELETE -> delete data in web server
 
 ## Request & Redirect
 name = request.form.get('name') => collect the "name" data from the formreturn redirect(url_for('auth.login')) => once the sign up is done, we redirect tp the login page
+
+## Database 
+SQLITE: https://sqlitebrowser.org/dl/
+from flask_sqlalchemy import SQLAlchemy
+
+All tables should go into models.py
+## Create database from CMD
+python3
+from _pushups_tracker import db,create_app
+db.create_all(app=create_app())
+
+from app import app,db
+app.app_context().push() 
+db.create_all() exit() '''
+
+from . import models
+with app.app_context():
+    db.create_aall()
+
+return app
