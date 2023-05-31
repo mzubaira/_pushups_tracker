@@ -144,10 +144,27 @@ from flask_login import UserMixin (models.py)
 from flask_login import login_required, current_user (main.py)
 from flask_login import login_user, logout_user, login_required (auth.py)
 
-
 It provides user session managament -> logging in , logging out, remembering user sessions over extended period of time, restricting views for logged out users, etc.
 
 UserMixin function adds the flaks login attrbutes  to the model.
 User_Loader tells Flask login to find the specific user from the ID which is stored in their session cookie.
 We can add this in the create_app function
 
+## Message Flashing
+It is used for user feedback.It records a message at the end of a request and access it in the next request.
+It is combined wiht a layout template. If message is too loing, it might fail as browsers have different cookie sizelimit.
+
+In the app routes funcitons we use:
+flash('You were successfully logged in')
+
+In the template html, if there are any flash messages (e.g.POST), we list them out:
+ {% with messages = get_flashed_messages() %} 
+ {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}
+        </div>
+{% endif %} {% endwith %}
+
+## Pagination
+
+2:10:28

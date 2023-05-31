@@ -44,9 +44,29 @@ def user_workouts():
     workouts = user.workouts
     return render_template('all_workouts.html', workouts=workouts, user=user)
 
-# #We need to generate the workout URL with the ID so that we cna update/delete it
-# @main.route()
-# @login_required
-# def update_workout():
-#     pass
+#We need to generate the workout URL with the ID so that we cna update/delete it
+@main.route("/workout/<int:workout_id>/update",methods=['GET','POST'])
+@login_required
+def update_workout(workout_id):
+    workout = Workout.query.get_or_404(workout_id)
 
+    #take the new updated value, update the workout DB object & send back to All workouts
+    if request.method == 'POST':
+        workout.pushups = request.form['pushups']
+        workout.comment = request.form['comment']
+        db.session.commit()
+        
+        flash('Your workout has been updated')
+        
+        return redirect(url_for('main.user_workouts'))
+
+    return render_template('update_workout.html', workout=workout)
+
+@main.route("/workout/<int:workout_id>/delete", methods=['GET', 'POST'])
+@login_required
+def delete_workout(workout_id):
+    workout = Workout.query.get_or_404(workout_id)
+    db.session.delete(workout)
+    db.session.commit()
+    flash('Your post has been deleted!')
+    return redirect(url_for('main.user_workouts'))
