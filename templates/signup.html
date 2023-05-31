@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block head %} {{ super() }}
+{% extends 'base.html' %} 
+
+{% block head %}  {{ super() }}
 
 <!-- We can add our own CSS files -->
 <link rel="stylesheet" href="{{ url_for('static',filename='extended_beauty.css') }}">
