@@ -1,10 +1,14 @@
 sudo apt install python3-flask
 
 ## Running the app
+Linux:
 export FLASK_APP=_pushups_tracker
 flask run
 
-Thi  is an environment variable given by flask which handles the behign scenes for your app & WSGI,.
+Windows:
+$env:FLASK_APP="_pushups_tracker"
+
+This is an environment variable given by flask which handles the behign scenes for your app & WSGI,.
 Flask looks for an __init__.py file & setup tha app
 
 ## Blueprint
@@ -120,21 +124,10 @@ SQLITE: https://sqlitebrowser.org/dl/
 from flask_sqlalchemy import SQLAlchemy
 
 All tables should go into models.py
+
 ## Create database from CMD
 python3
-from _pushups_tracker import db,create_app
-db.create_all(app=create_app())
-
-from app import app,db
-app.app_context().push() 
-db.create_all() exit() '''
-
-from . import models
-with app.app_context():
-    db.create_all()
-
-return app
-
+>>>from _pushups_tracker import db,create_app
 >>> app=create_app()
 >>> app.app_context().push()
 >>> db.create_all()
