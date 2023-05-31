@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, url_for, request, redirect
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash,check_password_hash
+from flask_login import login_user, logout_user, login_required
 from .models import User
 from. import db
 
@@ -21,9 +22,9 @@ def signup_post():
     user = User.query.filter_by(email=email).first()
 
     if user:
-        print("User already exists")
+        return redirect(url_for('auth.signup')) #redirect to sign uppage if user already exists
     
-    #create a new user object,add it to the DB & Commit
+    #create a new user object, add it to the DB & Commit
     new_user = User(email=email,name=name,password=generate_password_hash(password,method='sha256'))
     db.session.add(new_user)
     db.session.commit()
@@ -38,12 +39,28 @@ def login():
 def login_post(): 
     email = request.form.get('email')
     password = request.form.get('password')
+    remember = True if request.form.get('remember') else False
 
-    print(email, password)
+    #print(email, password)
     
-    return redirect(url_for('main.profile'))
+    #Get the user object from DB by 'email' filter
+    user = User.query.filter_by(email=email).first()
+
+    #un-successfull login, redirect to login page
+    if not user or not check_password_hash(user.password, password):
+        return redirect(url_for('auth.login'))
+    
+    login_user(user, remember=remember)
+
+    #if login is successful, redirect to profile page
+    return redirect(url_for('main.profile')) 
 
 @auth.route('/logout')
+@login_required #you need to be logged in to access the "logout" page
 def logout():
-    return "logging out"
+    #return "logging out"
+    logout_user()
+    return redirect('main.index')
+
+
 

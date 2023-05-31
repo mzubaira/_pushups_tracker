@@ -132,3 +132,21 @@ python3
 >>> app.app_context().push()
 >>> db.create_all()
 >>> exit()
+
+## Password Hash generation/checking (Auth.py)
+from werkzeug.security import generate_password_hash,check_password_hash
+
+## Flask Login (Models.py)
+pip install flask_login
+
+from flask_login import LoginManager (__init__.py)
+from flask_login import UserMixin (models.py)
+from flask_login import login_required, current_user (main.py)
+from flask_login import login_user, logout_user, login_required (auth.py)
+
+
+It provides user session managament -> logging in , logging out, remembering user sessions over extended period of time, restricting views for logged out users, etc.
+
+UserMixin function adds the flaks login attrbutes  to the model.
+User_Loader tells Flask login to find the specific user from the ID which is stored in their session cookie.
+We can add this in the create_app function
