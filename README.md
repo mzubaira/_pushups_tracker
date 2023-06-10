@@ -2,11 +2,12 @@ sudo apt install python3-flask
 
 ## Running the app
 Linux:
-export FLASK_APP=_pushups_tracker
+export FLASK_APP=_flask_CRUD
 flask run
 
 Windows:
-$env:FLASK_APP="_pushups_tracker"
+$env:FLASK_APP="_flask_CRUD"
+flask run
 
 This is an environment variable given by flask which handles the behign scenes for your app & WSGI,.
 Flask looks for an __init__.py file & setup tha app
@@ -127,7 +128,7 @@ All tables should go into models.py
 
 ## Create database from CMD
 python3
->>> from _pushups_tracker import db,create_app
+>>> from _flask_CRUD import db,create_app
 >>> app=create_app()
 >>> app.app_context().push()
 >>> db.create_all()
